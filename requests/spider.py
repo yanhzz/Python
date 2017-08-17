@@ -5,7 +5,7 @@ import requests
 from requests.exceptions import RequestException
 import re
 
-#获取一个url下的html文件
+#使用requests的get请求获得猫眼Top100的html
 def get_one_page(url):
     try:
         response = requests.get(url)
