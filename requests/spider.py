@@ -1,11 +1,12 @@
 # -*- coding:utf-8 -*-
+# 猫眼电影榜top100
 
 import json
 import requests
 from requests.exceptions import RequestException
 import re
 
-#使用requests的get请求获得猫眼Top100的html
+#使用requests的get请求获得html
 def get_one_page(url):
     try:
         response = requests.get(url)
