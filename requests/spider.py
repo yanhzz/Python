@@ -20,8 +20,8 @@ def parse_one_page(html):
     pattern = re.compile('<dd>.*?board-index.*?>(\d+)</i>.*?data-src="(.*?)".*?name"><a.*?>(.*?)'
                          '</a>.*?star">(.*?)</p>.*?releasetime">(.*?)</p>.*?integer">(.*?)</i>'
                          '.*?fraction">(.*?)</i>.*?</dd>',re.S) #使用re.S参数以后，多行匹配；反之，则换行就重新匹配
-    items = re.findall(pattern,html)
-    for item in items:  # 将解析的结果格式化(生成一个字典）
+    items = re.findall(pattern,html)# 这个时候items是一个元组组成的列表
+    for item in items:  # 将解析的结果格式化(生成一个字典）--遍历列表，用一个生成器来存储遍历到的结果
         yield{
             'index':item[0],
             'image':item[1],
@@ -34,7 +34,8 @@ def parse_one_page(html):
 #将爬取到的电影信息保存到本地文件夹
 def write_to_file(content):
     with open('result.txt','a',encoding='utf-8') as f:#将编码格式设置为utf-8
-        f.write(json.dumps(content,ensure_ascii=False)+'\n')#将字典转化为字符串
+        #将字典转化为字符串，注意：json.dumps是将dict转化成str格式，json.loads是将str转化成dict格式
+        f.write(json.dumps(content,ensure_ascii=False)+'\n')
         f.close()
 
 # 以offset作为参数，实现分页抓取数据
