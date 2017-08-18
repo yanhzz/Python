@@ -20,7 +20,7 @@ def get_one_page(url):
 def parse_one_page(html):
     pattern = re.compile('<dd>.*?board-index.*?>(\d+)</i>.*?data-src="(.*?)".*?name"><a.*?>(.*?)'
                          '</a>.*?star">(.*?)</p>.*?releasetime">(.*?)</p>.*?integer">(.*?)</i>'
-                         '.*?fraction">(.*?)</i>.*?</dd>',re.S) #使用re.S参数以后，多行匹配；反之，则换行就重新匹配
+                         '.*?fraction">(.*?)</i>.*?</dd>',re.S) #使用re.S:点匹配任意字符
     items = re.findall(pattern,html)# 这个时候items是一个元组组成的列表
     for item in items:  # 将解析的结果格式化(生成一个字典）--遍历列表，用一个生成器来存储遍历到的结果
         yield{
