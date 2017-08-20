@@ -50,4 +50,4 @@ class Handler(BaseHandler):
     def save_to_mongo(self,result):
         if self.db["london"].insert(result):
             print("save to mongo",result)
-
+ 
